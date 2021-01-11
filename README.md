@@ -1,4 +1,4 @@
-# React-ToDoList-Version1.0
+# React-ToDoList-V1
 
 [DEMO 連結](https://wongyunlam.github.io/react-todo/)
 
