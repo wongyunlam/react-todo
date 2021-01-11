@@ -1,6 +1,6 @@
-import "./App.css";
 import styled from "styled-components";
-import { MEDIA_QUERY_MD, MEDIA_QUERY_LG } from "./constant/style";
+import { MEDIA_QUERY_MD } from "../../constants/style";
+import PropTypes from "prop-types"
 
 const TodoItemWrapper = styled.div`
   display: flex;
@@ -13,19 +13,18 @@ const TodoItemWrapper = styled.div`
     margin-top: 12px;
   }
 `;
-const TodoContent = styled.div`
-  color: ${(props) => props.theme.colors.primary_300};
-  font-size: 12px;
 
-  ${(props) => props.$size === "XL" && `font-size: 20px;`}
+const TodoContent = styled.div`
+  color: #000;
+  font-size: 16px;
 
   ${(props) => props.$isDone && `text-decoration: line-through`}
 `;
 
-const TodoButtonWrapper = styled.div``;
+const TodoBtnWrapper = styled.div``;
 
 const Button = styled.button`
-  padding: 4px
+  padding: 4px;
   color: black;
   font-size: 20px;
 
@@ -33,16 +32,12 @@ const Button = styled.button`
     font-size: 16px;
   }
 
-  ${MEDIA_QUERY_LG} {
-    font-size: 64px;
-  }
-
   &:hover {
-    color: red
+    color: green;
   }
 
   & + & {
-    margin-left: 20px
+    margin-left: 8px;
   }
 `;
 
@@ -51,8 +46,7 @@ const RedButton = styled(Button)`
 `;
 
 export default function TodoItem({
-  className,
-  size,
+  content,
   todo,
   handleDeleteTodo,
   handleToggleIsDone,
@@ -60,21 +54,31 @@ export default function TodoItem({
   const handleDeleteClick = () => {
     handleDeleteTodo(todo.id);
   };
+
   const handleToggleClick = () => {
     handleToggleIsDone(todo.id);
   };
 
   return (
-    <TodoItemWrapper className={className} data-todo-id={todo.id}>
-      <TodoContent $isDone={todo.isDone} $size={size}>
-        {todo.content}
-      </TodoContent>
-      <TodoButtonWrapper>
+    <TodoItemWrapper>
+      <TodoContent $isDone={todo.isDone}>{content}</TodoContent>
+      <TodoBtnWrapper>
         <Button onClick={handleToggleClick}>
-          {todo.isDone ? "Incomplete" : "Completed"}
+          {todo.isDone ? "未完成" : "已完成"}
         </Button>
-        <RedButton onClick={handleDeleteClick}>Delete</RedButton>
-      </TodoButtonWrapper>
+        <RedButton onClick={handleDeleteClick}>刪除</RedButton>
+      </TodoBtnWrapper>
     </TodoItemWrapper>
   );
+}
+
+TodoItem.propTypes = {
+  content: PropTypes.string,
+  todo: PropTypes.object.shape ({
+    id: PropTypes.number,
+    content: PropTypes.string,
+    isDone: PropTypes.bool
+  }),
+  handleDeleteTodo: PropTypes.func,
+  handleToggleIsDone: PropTypes.func,
 }
