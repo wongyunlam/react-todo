@@ -80,7 +80,7 @@ export default function TodoItem({
       <TodoContent $isDone={todo.isDone}>{content}</TodoContent>
       <TodoBtnWrapper>
         {!todo.isDone && (
-          <Button onClick={() => handleUpdateTodo(todo)}>編輯</Button>
+          <Button onClick={() => handleUpdateTodo(todo)}>edit</Button>
         )}
         {!todo.isEditing && (
           <Button
@@ -88,10 +88,10 @@ export default function TodoItem({
               handleToggleClick(todo.id);
             }}
           >
-            {todo.isDone ? "未完成" : "已完成"}
+            {todo.isDone ? "undone" : "done"}
           </Button>
         )}
-        <RedButton onClick={handleDeleteClick}>刪除</RedButton>
+        <RedButton onClick={handleDeleteClick}>delete</RedButton>
       </TodoBtnWrapper>
     </TodoItemWrapper>
   );
