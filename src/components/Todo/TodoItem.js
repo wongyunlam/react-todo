@@ -64,9 +64,9 @@ export default function TodoItem({
       <TodoContent $isDone={todo.isDone}>{content}</TodoContent>
       <TodoBtnWrapper>
         <Button onClick={handleToggleClick}>
-          {todo.isDone ? "未完成" : "已完成"}
+          {todo.isDone ? "undone" : "done"}
         </Button>
-        <RedButton onClick={handleDeleteClick}>刪除</RedButton>
+        <RedButton onClick={handleDeleteClick}>delete</RedButton>
       </TodoBtnWrapper>
     </TodoItemWrapper>
   );
