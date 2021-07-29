@@ -93,12 +93,12 @@ function App() {
         ))}
       <ButtonWrapper>
         <div>
-          <button onClick={renderAll}>全部</button>
-          <button onClick={renderDone}>已完成</button>
-          <button onClick={renderUndone}>未完成</button>
+          <button onClick={renderAll}>All</button>
+          <button onClick={renderDone}>Done</button>
+          <button onClick={renderUndone}>Undone</button>
         </div>
         <div>
-          <button onClick={handleDeleteAll}>清空全部</button>
+          <button onClick={handleDeleteAll}>Clear all</button>
         </div>
       </ButtonWrapper>
     </Container>
